@@ -1,57 +1,127 @@
-# Sample Hardhat 3 Beta Project (`mocha` and `ethers`)
+# ERC20 Access Control Token
 
-This project showcases a Hardhat 3 Beta project using `mocha` for tests and the `ethers` library for Ethereum interactions.
+A production-style ERC20 token smart contract built with Solidity, Hardhat, OpenZeppelin, and TypeScript.
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+---
 
-## Project Overview
+## Features
 
-This example project includes:
+- ERC20 token standard
+- Mint functionality
+- Burn functionality
+- Role-based access control
+- Max supply protection
+- Custom Solidity errors
+- Automated tests with Hardhat
+- Sepolia testnet deployment
+- Etherscan verified contract
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using `mocha` and ethers.js
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+---
 
-## Usage
+## Tech Stack
 
-### Running Tests
+- Solidity
+- Hardhat
+- OpenZeppelin
+- TypeScript
+- Ethers.js
+- Mocha / Chai
 
-To run all the tests in the project, execute the following command:
+---
 
-```shell
+## Smart Contract Features
+
+### Minting
+
+Only addresses with `MINTER_ROLE` can mint new tokens.
+
+### Burning
+
+Token holders can burn their own tokens.
+
+### Access Control
+
+Uses OpenZeppelin `AccessControl` for role management.
+
+### Max Supply
+
+The contract prevents minting above the maximum token supply.
+
+### Custom Errors
+
+Gas-optimized custom Solidity errors are implemented.
+
+---
+
+## Test Coverage
+
+The project includes automated tests for:
+
+- Deployment
+- Access control
+- Minting
+- Burning
+- Max supply protection
+- Revert cases
+
+---
+
+## Deployment
+
+Successfully deployed and verified on Ethereum Sepolia Testnet.
+
+### Contract Address
+
+```text
+0xA2CF088f1EeB7EAf263824289A57C4F57810738D
+```
+
+### Etherscan
+
+https://sepolia.etherscan.io/address/0xA2CF088f1EeB7EAf263824289A57C4F57810738D#code
+
+---
+
+## Install
+
+```bash
+npm install
+```
+
+---
+
+## Compile
+
+```bash
+npx hardhat compile
+```
+
+---
+
+## Run Tests
+
+```bash
 npx hardhat test
 ```
 
-You can also selectively run the Solidity or `mocha` tests:
+---
 
-```shell
-npx hardhat test solidity
-npx hardhat test mocha
+## Deploy
+
+```bash
+npx hardhat run scripts/deploy.ts --network sepolia
 ```
 
-### Make a deployment to Sepolia
+---
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
+## Verify Contract
 
-To run the deployment to a local chain:
-
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
+```bash
+npx hardhat verify --network sepolia CONTRACT_ADDRESS "My Token" "MTK" 1000 10000
 ```
 
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
+---
 
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
+## Author
 
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
-
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
-
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
+Cihat Tuncay
